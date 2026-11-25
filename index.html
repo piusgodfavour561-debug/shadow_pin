@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHADOW PIN DOWNLOADER</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#090611;
+ color:white;
+ font-family:Arial,sans-serif;
+ display:flex;
+ justify-content:center;
+ min-height:100vh;
+}
+
+.container{
+ width:100%;
+ max-width:430px;
+ padding:24px 18px;
+}
+
+.logo{
+ text-align:center;
+ margin:24px 0;
+}
+
+.logo h1{
+ color:#b66aff;
+ font-size:27px;
+ letter-spacing:2px;
+}
+
+.logo h2{
+ letter-spacing:3px;
+}
+
+.logo p{color:#aaa}
+
+.featured-photo{
+ width:100%;
+ height:220px;
+ object-fit:cover;
+ object-position:center 35%;
+ border-radius:16px;
+ border:1px solid #63319a;
+ display:block;
+ margin-bottom:24px;
+}
+
+.card{
+ background:#171020;
+ border:1px solid #49216d;
+ padding:22px;
+ border-radius:18px;
+}
+
+label{
+ display:block;
+ margin-bottom:10px;
+}
+
+input{
+ width:100%;
+ padding:15px;
+ border-radius:10px;
+ border:1px solid #63319a;
+ background:#090611;
+ color:white;
+ outline:none;
+}
+
+button{
+ width:100%;
+ padding:15px;
+ border:0;
+ border-radius:10px;
+ margin-top:14px;
+ background:linear-gradient(90deg,#7e22ce,#c026d3);
+ color:white;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+#result{
+ margin-top:20px;
+ display:none;
+}
+
+video{
+ width:100%;
+ border-radius:12px;
+ background:black;
+}
+
+.note{
+ color:#aaa;
+ font-size:12px;
+ text-align:center;
+ margin-top:25px;
+}
+</style>
+</head>
+
+<body>
+<main class="container">
+
+<div class="logo">
+<h1>SHADOW PIN</h1>
+<h2>DOWNLOADER</h2>
+<p>Save Pinterest videos easily.</p>
+</div>
+
+<img class="featured-photo"
+src="1000077626.jpg"
+alt="Shadow featured photo">
+
+<div class="card">
+
+<label>Paste Pinterest video link</label>
+
+<input
+id="pinLink"
+type="url"
+placeholder="https://pin.it/..."
+>
+
+<button onclick="prepare()">
+FETCH VIDEO
+</button>
+
+<div id="result">
+<p id="message"></p>
+
+<video id="preview" controls></video>
+
+<a id="download" download="pinterest-video.mp4">
+<button>DOWNLOAD VIDEO</button>
+</a>
+</div>
+
+</div>
+
+<p class="note">
+Only download videos you own or have permission to save.
+</p>
+
+</main>
+
+<script>
+function prepare(){
+
+const link=document.getElementById("pinLink").value.trim();
+
+if(!link){
+alert("Please paste a Pinterest link!");
+return;
+}
+
+try{
+const url=new URL(link);
+
+if(!["pinterest.com","www.pinterest.com","pin.it"].includes(url.hostname)){
+alert("Invalid Pinterest link!");
+return;
+}
+
+}catch(e){
+alert("Invalid link!");
+return;
+}
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("message").textContent=
+"Pinterest link received. A direct authorized video file is needed to download.";
+
+document.getElementById("preview").removeAttribute("src");
+document.getElementById("download").removeAttribute("href");
+
+}
+</script>
+
+</body>
+</html>
+￼Enter
